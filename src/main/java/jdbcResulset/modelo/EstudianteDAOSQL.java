@@ -2,6 +2,8 @@ package jdbcResulset.modelo;
 
 import java.util.ArrayList;
 import java.util.List;
+
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
@@ -9,12 +11,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.Instant;
-import java.time.ZoneId;
 
 import completo.Ayudante;
-import jdbcResulset.conexion.Conexion;
 import jdbcResulset.conexion.ConexionDS;
+import java.sql.CallableStatement;
 
 public class EstudianteDAOSQL implements EstudianteDAO {
 
@@ -73,6 +73,14 @@ public class EstudianteDAOSQL implements EstudianteDAO {
 			
 		}
 		return datos;
+	}
+
+	@Override
+	public boolean subirNota(int porcentaje) throws SQLException {
+		// TODO Auto-generated method stub
+		CallableStatement sentencia = conexion.prepareCall("{call subir_nota(?)}");  
+		sentencia.setInt(1, porcentaje);
+		return sentencia.executeUpdate() != 0;
 	}
 
 	

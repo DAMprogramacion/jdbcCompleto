@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 31-10-2021 a las 14:47:54
+-- Tiempo de generación: 01-11-2021 a las 10:44:28
 -- Versión del servidor: 5.6.51
 -- Versión de PHP: 7.4.25
 
@@ -20,6 +20,14 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `docencia`
 --
+
+DELIMITER $$
+--
+-- Procedimientos
+--
+CREATE DEFINER=`root`@`%` PROCEDURE `subir_nota` (IN `procentaje` INT)  UPDATE estudiante_docencia SET notaFinal = notaFinal + notaFinal * procentaje / 100$$
+
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -40,7 +48,8 @@ CREATE TABLE `estudiante` (
 
 INSERT INTO `estudiante` (`id`, `nombreEstudiante`, `apellidosEstudiante`, `fechaNacimiento`) VALUES
 (1, 'manuel', 'garcía garcía', '2000-10-07'),
-(2, 'Luisa', 'Campos Campos', '1999-12-25');
+(2, 'Luisa', 'Campos Campos', '1999-12-25'),
+(4, 'pepe', 'arcos moya', '2021-10-26');
 
 -- --------------------------------------------------------
 
@@ -59,10 +68,10 @@ CREATE TABLE `estudiante_docencia` (
 --
 
 INSERT INTO `estudiante_docencia` (`id_estudiante`, `id_materia`, `notaFinal`) VALUES
-(2, 1, 5),
+(2, 1, 6),
 (2, 2, 4),
 (1, 1, 1),
-(1, 2, 8);
+(1, 2, 9);
 
 -- --------------------------------------------------------
 
