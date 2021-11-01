@@ -14,23 +14,27 @@ import java.time.ZoneId;
 
 import completo.Ayudante;
 import jdbcResulset.conexion.Conexion;
+import jdbcResulset.conexion.ConexionDS;
 
 public class EstudianteDAOSQL implements EstudianteDAO {
 
 	private Connection conexion = null;
 
 	public EstudianteDAOSQL() throws FileNotFoundException, SQLException, IOException {
-		conexion = Conexion.getConnection();
+		//conexion = Conexion.getConnection();
+		conexion = ConexionDS.getConnection(); //con DataSource
+
 	}
 
 	@Override
 	public List<Estudiante> obtenerTodosLosEstudiantes() throws SQLException {
 		List<Estudiante> lista = new ArrayList();
-		Estudiante estudiante = new Estudiante();
+		//Estudiante estudiante = new Estudiante(); error definir aquí el objeto Estudiante
 		String sentencia = "SELECT * FROM estudiante; ";
 		Statement statement = conexion.createStatement();
 		ResultSet resulset = statement.executeQuery(sentencia);
 		while (resulset.next()) {
+			Estudiante estudiante = new Estudiante();
 			estudiante.setId(resulset.getInt(1));
 			estudiante.setNombreEstudiante(resulset.getString(2));
 			estudiante.setApellidosEstudiantes(resulset.getString(3));

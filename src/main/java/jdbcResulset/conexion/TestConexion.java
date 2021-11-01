@@ -11,6 +11,7 @@ public class TestConexion {
 		try {
 			System.out.println(Conexion.getConnection());
 			System.out.println(Conexion.getConnection());
+			System.out.println(ConexionDS.getConnection());
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
